@@ -1,5 +1,4 @@
 var model = require('./model');
-
 var view = {};
 
 view.render = function(data) {

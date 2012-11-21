@@ -1,14 +1,15 @@
 var path = require('path'),
-    misc = require('./misc');
+    misc = require('./misc'),
+	markdown = require('markdown').markdown;
 
 var model = {};
 
 model.serverRoot = path.join(__dirname, 'html');
 
-model.hostPort = 81;
+//model.hostPort = 81;
 
-model.hostName = 'localhost:' + model.hostPort;
-//model.hostName ='192.168.70.102:'+model.hostPort;
+//model.hostName = 'localhost:' + model.hostPort;
+model.hostName = 'radiation.pp.ua';
 
 model.dynamicExt = '.html';
 
@@ -24,7 +25,7 @@ model.getFsPath = function(rPath){
 
 model.getFileData = function(file){
     return {
-        'content': misc.getFile(file),
+        'content': markdown.toHTML(misc.getFile(file)),
         'title': path.basename(file, model.dynamicExt),
         'host': model.hostName
     };
